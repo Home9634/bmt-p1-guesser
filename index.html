@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4D Guessing Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-white text-neutral-900 antialiased">
+
+  <!-- Password Gate -->
+  <main id="unlock-screen" class="min-h-screen flex items-center justify-center px-4">
+    <form id="unlock-form" class="w-full max-w-xs space-y-3">
+      <label for="password-input" class="block text-sm font-medium text-neutral-700">
+        Passphrase
+      </label>
+      <div class="flex gap-2">
+        <input
+          id="password-input"
+          type="password"
+          autocomplete="off"
+          required
+          placeholder="Enter passphrase"
+          class="flex-1 border border-neutral-300 px-3 py-1.5 text-sm focus:outline-none focus:border-neutral-900"
+        />
+        <button
+          id="unlock-btn"
+          type="submit"
+          class="border border-neutral-900 bg-neutral-900 text-white px-3 py-1.5 text-sm hover:bg-neutral-800 disabled:opacity-50"
+        >
+          Unlock
+        </button>
+      </div>
+      <p id="unlock-error" class="text-xs text-red-600 min-h-[1rem]"></p>
+    </form>
+  </main>
+
+  <!-- Game View -->
+  <div id="game-screen" class="hidden min-h-screen flex flex-col">
+    <!-- Fixed / Sticky Top Bar -->
+    <header class="sticky top-0 z-20 bg-white border-b border-neutral-300 px-3 sm:px-6 py-2.5">
+      <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+        <!-- Far Left: Guess Input -->
+        <input
+          id="guess-input"
+          type="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="Type a name..."
+          class="w-40 sm:w-64 border border-neutral-300 px-2.5 py-1 text-sm focus:outline-none focus:border-neutral-900 disabled:bg-neutral-100 disabled:text-neutral-400"
+        />
+
+        <!-- Far Right: Timer, Score, Give Up / Reset -->
+        <div class="flex items-center gap-3 sm:gap-5 shrink-0">
+          <span id="timer" class="font-mono text-sm tabular-nums text-neutral-800">0:00.0</span>
+          <span id="score" class="font-mono text-sm tabular-nums text-neutral-800">0/52</span>
+          <button
+            id="action-btn"
+            type="button"
+            class="border border-neutral-300 px-2.5 py-1 text-xs sm:text-sm text-neutral-700 hover:border-neutral-900 hover:text-neutral-900"
+          >
+            Give Up
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Horizontally Scrollable 8-Column Table -->
+    <main class="flex-1 px-3 sm:px-6 py-4">
+      <div class="max-w-7xl mx-auto overflow-x-auto">
+        <table id="board" class="w-full min-w-[780px] border-collapse border border-neutral-300 text-sm">
+          <tbody id="board-body"></tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
